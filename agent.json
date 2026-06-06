@@ -1,0 +1,70 @@
+{
+  "version": "2.0",
+  "name": "hermes-agent",
+  "codename": "HERMES",
+  "description": "Messenger & Orchestrator of the VibraHalo ecosystem.",
+  "owner": "leoncanales23",
+  "created": "2026-06-05",
+  "status": "active",
+  "layers": {
+    "brain": {
+      "description": "Core platform — Mission Control",
+      "repos": ["vibrahalo-mempalace", "vibraalto-core"],
+      "color": "#8b5cf6"
+    },
+    "compute": {
+      "description": "Sovereign compute — NERHIA backend",
+      "repos": ["VBC-Compute-Layer"],
+      "color": "#3b82f6",
+      "endpoints": {
+        "health": "http://34.74.27.168:8000/health",
+        "chat": "http://34.74.27.168:8000/aura/chat",
+        "stats": "http://34.74.27.168:8000/stats"
+      }
+    },
+    "intelligence": {
+      "description": "NERHIA — AI consciousness layer",
+      "repos": ["nerhia", "nerhia-urban-sdk"],
+      "color": "#06b6d4"
+    },
+    "world": {
+      "description": "Simulated reality & 3D worlds",
+      "repos": ["vibraworld", "3d", "genesis-world", "SimWorld"],
+      "color": "#10b981"
+    },
+    "economy": {
+      "description": "VBC token economy",
+      "repos": ["nexus", "mining-cli"],
+      "color": "#f59e0b"
+    },
+    "agent": {
+      "description": "Autonomous agents & tools",
+      "repos": ["jarvis", "hermes-agent", "ECC", "openclaw"],
+      "color": "#ef4444"
+    }
+  },
+  "signals": {
+    "emits": ["hermes:online", "hermes:scan", "hermes:pulse", "hermes:act", "hermes:wake", "hermes:alert"],
+    "listens": ["aura:event", "nerhia:request", "mempalace:command"]
+  },
+  "actions": {
+    "scan": "Scan all ecosystem repos via GitHub API",
+    "classify": "Classify repos by layer and type",
+    "pulse": "Emit heartbeat with ecosystem status",
+    "wake_detect": "Detect dormant repos with new commits",
+    "cross_push": "Push files to any ecosystem repo",
+    "create_issue": "Create issues cross-repo",
+    "notify": "Send email notifications via NERHIA"
+  },
+  "heartbeat": {
+    "interval_ms": 3600000,
+    "notify_email": "leoncanales7@gmail.com",
+    "notify_email_backup": "leoncanales@vibraalto.cl"
+  },
+  "classification": {
+    "core_private": 14,
+    "own_public": 5,
+    "fork_reference": 35,
+    "total": 54
+  }
+}
