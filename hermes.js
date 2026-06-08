@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 🪽 HERMES AGENT v2.1
+ * 🪽 HERMES AGENT v2.2
  * Messenger & Orchestrator of the VibraHalo Ecosystem
  *
  * Usage:
@@ -52,7 +52,7 @@ function githubRequest(path, method = 'GET', body = null) {
       path,
       method,
       headers: {
-        'User-Agent':  'hermes-agent/2.1',
+        'User-Agent':  'hermes-agent/2.2',
         'Accept':      'application/vnd.github.v3+json',
         ...(CONFIG.token ? { Authorization: `token ${CONFIG.token}` } : {}),
         ...(bodyStr ? { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(bodyStr) } : {}),
@@ -91,12 +91,12 @@ async function getAllRepos() {
 
   // Use /user/repos (authenticated, includes private) or /users/owner/repos (public only)
   const endpoint = CONFIG.token
-    ? `/user/repos?per_page=100&page=${page}&type=all&affiliation=owner`
+    ? `/user/repos?per_page=100&page=${page}&type=all`
     : `/users/${CONFIG.owner}/repos?per_page=100&page=${page}`;
 
   while (true) {
     const path = CONFIG.token
-      ? `/user/repos?per_page=100&page=${page}&type=all&affiliation=owner`
+      ? `/user/repos?per_page=100&page=${page}&type=all`
       : `/users/${CONFIG.owner}/repos?per_page=100&page=${page}`;
 
     const batch = await githubRequest(path);
@@ -263,7 +263,7 @@ async function heartbeat() {
 
 // ── MAIN ──────────────────────────────────────────────────────────
 async function main() {
-  AURABus.emit('hermes:online', { version: '2.1', owner: CONFIG.owner, hasToken: !!CONFIG.token });
+  AURABus.emit('hermes:online', { version: '2.2', owner: CONFIG.owner, hasToken: !!CONFIG.token });
   await heartbeat();
   setInterval(heartbeat, CONFIG.heartbeatMs);
   console.log(`[HERMES] 🪽 Running — heartbeat every ${CONFIG.heartbeatMs / 60000}min`);
